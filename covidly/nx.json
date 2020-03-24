@@ -17,6 +17,9 @@
     "covidly-e2e": {
       "tags": [],
       "implicitDependencies": ["covidly"]
+    },
+    "ui": {
+      "tags": []
     }
   }
 }
