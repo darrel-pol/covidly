@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "projects": {
+    "covidly": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/covidly",
+      "sourceRoot": "apps/covidly/src",
+      "prefix": "covidly",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/covidly",
+            "index": "apps/covidly/src/index.html",
+            "main": "apps/covidly/src/main.ts",
+            "polyfills": "apps/covidly/src/polyfills.ts",
+            "tsConfig": "apps/covidly/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/covidly/src/favicon.ico",
+              "apps/covidly/src/assets"
+            ],
+            "styles": ["apps/covidly/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/covidly/src/environments/environment.ts",
+                  "with": "apps/covidly/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "covidly:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "covidly:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "covidly:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/covidly/tsconfig.app.json",
+              "apps/covidly/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/covidly/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/covidly/jest.config.js",
+            "tsConfig": "apps/covidly/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/covidly/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "covidly-e2e": {
+      "root": "apps/covidly-e2e",
+      "sourceRoot": "apps/covidly-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/covidly-e2e/cypress.json",
+            "tsConfig": "apps/covidly-e2e/tsconfig.e2e.json",
+            "devServerTarget": "covidly:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "covidly:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/covidly-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/covidly-e2e/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "analytics": "66f9e3a7-2624-4bf9-81e0-ae3a2df31f02"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "covidly"
+}
