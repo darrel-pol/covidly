@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  gitEndpoint: "https://api.github.com",
+  gitRepository: "/repos/darrel-pol/COVID-19",
+  gitDailyReportPath: "/contents/csse_covid_19_data/csse_covid_19_daily_reports",
 };
 
 /*

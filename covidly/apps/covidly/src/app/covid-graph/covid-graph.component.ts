@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChartService } from 'libs/ui/src/lib/chart.service';
 
 @Component({
   selector: 'covidly-covid-graph',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CovidGraphComponent implements OnInit {
 
-  constructor() { }
+  constructor(private chartService: ChartService) { }
 
   ngOnInit(): void {
+    const reportContent = this.chartService.getReport(new Date('01-22-2020'));
+    console.log(reportContent);
   }
 
 }

@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CovidGraphComponent } from './covid-graph/covid-graph.component';
-
+import { UiModule } from '@covidly/ui';
 @NgModule({
   declarations: [AppComponent, CovidGraphComponent],
-  imports: [BrowserModule],
+  imports: [BrowserModule, UiModule],
   providers: [],
   bootstrap: [AppComponent]
 })
